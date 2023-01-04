@@ -54,47 +54,54 @@ camelize("background-color");
 camelize("list-style-image");
 camelize("-webkit-transition");
 // bai 6
-let arr = [1,2,3,4,5,6,7,8,9,10]
+let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 function filterRange(arr, a, b) {
-    return arr.filter(list => (a <= list && list <= b));
+  return arr.filter((list) => a <= list && list <= b);
 }
 
 //bai7
 let initArray = [
-    { name: "Bui", age: 25 },
-    { name: "Viet", age: 26 },
-    { name: "Hoang", age: 27 },
-    { name: "Bui2" },
-    { age: 20 },
-    { name: "Hoang2", age: 18 }
+  { name: "Bui", age: 25 },
+  { name: "Viet", age: 26 },
+  { name: "Hoang", age: 27 },
+  { name: "Bui2" },
+  { age: 20 },
+  { name: "Hoang2", age: 18 },
 ];
-let names = initArray.map(listname => listname.name).filter(item => {
-    return item !== undefined
-})
+let names = initArray.reduce(
+  (res, curr) => (curr.name != undefined ? [...res, curr.name] : res),
+  []
+);
 
-
-
-let age = initArray.filter(item => item.age !== undefined)
-
+// bai8
 function getAverageAge(users) {
-    return users.reduce((prev, user) => prev + user.age, 0) / users.length;
+  return (
+    users.reduce(
+      (prev, user) => (user.age != undefined ? prev + user.age : prev),
+      0
+    ) /
+    (users.length - 1)
+  );
 }
 
 // bai9
-let flattened = [[1, 2], [3, 4], [5, 6]];
-
+let flattened = [
+  [1, 2],
+  [3, 4],
+  [5, 6],
+];
+console.log(flattened.flat(Infinity));
 // bai10
-function print_number()
-{
-    let number = document.querySelector(".select-input").value;
-    let html="";
-    if(number === ""){
-        html = 1 
-        alert("Vui lòng nhập giá trị số vào ô input")
-    } else {
-        for (let i = 1; i <= number; i++){
-        html += i + ' ';
+function print_number() {
+  let inputValue = document.querySelector(".select-input").value;
+  let addtext = "";
+  if (inputValue === "") {
+    addtext = 1;
+    alert("Vui lòng nhập giá trị số vào ô input");
+  } else {
+    for (let i = 1; i <= inputValue; i++) {
+      addtext += i + " ";
     }
-    }
-    document.querySelector(".text-number").innerHTML = html;
+  }
+  document.querySelector(".text-number").innerHTML = addtext;
 }
